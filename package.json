@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
+    "test": "mocha",
     "start": "nodemon -r esm-wallaby ./bin/www"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "jsonwebtoken": "^9.0.2",
+    "mocha": "^10.8.2",
     "mongoose": "^8.8.2",
     "morgan": "~1.9.1",
     "nodemon": "^3.1.7"
