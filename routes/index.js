@@ -13,15 +13,15 @@ var router = express.Router();
 
 const connectionObject = {
 	"GET": {
-		'/queryListings': queryListings
+		'/queryListings': queryListings,
+		'/reportListings': reportListings
 	},
 	"POST": {
     '/users/login': login,
     '/users/signup': signup,
     '/insertListing': insertListing,
 		'/bookStay': bookStay,
-		'/leaveReview': leaveReview,
-		'/reportListings': reportListings
+		'/leaveReview': leaveReview
 	}
 }
 
@@ -44,7 +44,7 @@ function handleMessage(req, res) {
 	}
 	
 	const url = req.params[0]
-	
+
 	const func = method[url]
 	
 	if(!func) {
@@ -81,6 +81,7 @@ function handleMessage(req, res) {
 }
 
 router.use('*', function(req, res, next) {
+	console.log(req)
   handleMessage(req, res)
 });
 

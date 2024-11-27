@@ -11,8 +11,10 @@ async function queryListings(req, res, id) {
 	const listings = await Listing.find({ noOfPeople, country, city })
 
 	const bookings = await Booking.find({ 
-		from: { $gt: from }, 
-		to: { $lt: to }, 
+		$or: [
+			{ from: { $gt: from, $lt: to } }, 
+			{ to: { $gt: from, $lt: to } }
+		],		
 		listing: { $in: listings.map(x => x._id)}
 	}),
 		bookingIds = bookings.map(x => x._id)

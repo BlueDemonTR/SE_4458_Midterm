@@ -1,0 +1,391 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "Hello World App"
+  },
+  "host": "localhost:8081",
+  "basePath": "/api",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/users/login": {
+      "x-swagger-router-controller": "hello_world",
+      "post": {
+        "description": "Logs a user into an account",
+        "operationId": "login",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "The listing data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "username",
+                "password"
+              ],
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/HelloWorldResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users/signup": {
+      "x-swagger-router-controller": "hello_world",
+      "post": {
+        "description": "Creates a new user",
+        "operationId": "signup",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "The listing data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "username",
+                "password"
+              ],
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/HelloWorldResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/insertListing": {
+      "x-swagger-router-controller": "hello_world",
+      "post": {
+        "description": "Creates a listing",
+        "operationId": "insertListing",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "The listing data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "noOfPeople",
+                "country",
+                "city",
+                "price"
+              ],
+              "properties": {
+                "noOfPeople": {
+                  "type": "number"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/HelloWorldResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/bookStay": {
+      "x-swagger-router-controller": "hello_world",
+      "post": {
+        "description": "Creates a booking",
+        "operationId": "bookStay",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "The listing data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "listing",
+                "from",
+                "to",
+                "guests"
+              ],
+              "properties": {
+                "listing": {
+                  "type": "string"
+                },
+                "from": {
+                  "type": "string"
+                },
+                "to": {
+                  "type": "string"
+                },
+                "guests": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/HelloWorldResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/leaveReview": {
+      "x-swagger-router-controller": "hello_world",
+      "post": {
+        "description": "Creates a review",
+        "operationId": "leaveReview",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "The listing data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "stayId",
+                "rating",
+                "description"
+              ],
+              "properties": {
+                "stayId": {
+                  "type": "string"
+                },
+                "rating": {
+                  "type": "number"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/HelloWorldResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/reportListings": {
+      "x-swagger-router-controller": "hello_world",
+      "get": {
+        "description": "Get a list of the listings (max 10 at once)",
+        "operationId": "reportListings",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "query",
+            "description": "the country to search",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "the city to search",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Starting date to look for in iso string",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End date to look for in iso string",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "how many items to skip for pagination reasons",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/HelloWorldResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/queryListings": {
+      "x-swagger-router-controller": "hello_world",
+      "get": {
+        "description": "Get a list of the available listings at centain date range (max 10 at once)",
+        "operationId": "queryListings",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "query",
+            "description": "the country to search",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "the city to search",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "how many items to skip for pagination reasons",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/HelloWorldResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/swagger": {
+      "x-swagger-pipe": "swagger_raw"
+    }
+  },
+  "definitions": {
+    "HelloWorldResponse": {
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
