@@ -11,10 +11,17 @@ const BookingSchema = new Schema({
     },
     listing: {
         type: Schema.Types.ObjectId,
-        ref: 'Listing'
+        ref: 'Listing',
+        required: true
     },
-    from: Date,
-    to: Date
+    from: { 
+        type: Date,
+        required: true
+    },
+    to: { 
+        type: Date,
+        required: true
+    }
 })
 
 const Booking = model('Booking', BookingSchema)

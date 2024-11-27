@@ -28,8 +28,6 @@ async function signup(req, res, id) {
     { expiresIn: '7d' }
   )
 
-	console.log(token)
-
 	res.send({ token, user })
 }
 

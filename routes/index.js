@@ -4,7 +4,10 @@ const { default: signup } = require('./signup');
 const { verify } = require('jsonwebtoken');
 const { default: insertListing } = require('./insertListing');
 import config from '../config'
+import bookStay from './bookStay';
+import leaveReview from './leaveReview';
 import queryListings from './queryListings';
+import reportListings from './reportListings';
 
 var router = express.Router();
 
@@ -15,7 +18,10 @@ const connectionObject = {
 	"POST": {
     '/users/login': login,
     '/users/signup': signup,
-    '/insertListing': insertListing
+    '/insertListing': insertListing,
+		'/bookStay': bookStay,
+		'/leaveReview': leaveReview,
+		'/reportListings': reportListings
 	}
 }
 
@@ -38,7 +44,7 @@ function handleMessage(req, res) {
 	}
 	
 	const url = req.params[0]
-
+	
 	const func = method[url]
 	
 	if(!func) {

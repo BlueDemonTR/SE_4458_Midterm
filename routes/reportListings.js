@@ -4,26 +4,25 @@ import Review from "../models/Review";
 
 const QUERY_LIMIT = 10
 
-async function queryListings(req, res, id) {
+async function reportListings(req, res, id) {
 	const { query } = req,
-		{ from, to, noOfPeople, country, city, skip = 0 } = query
+		{ country, city, skip = 0 } = query
 
-	const listings = await Listing.find({ noOfPeople, country, city })
+	const user = await authorize(id, 'admin')
+	if(!user) return res.send('Unauthorized', 401)
 
-	const bookings = await Booking.find({ 
-		from: { $gt: from }, 
-		to: { $lt: to }, 
+	const listings = await Listing.find({ country, city })
+
+	const bookings = await Booking.find({
 		listing: { $in: listings.map(x => x._id)}
 	}),
 		bookingIds = bookings.map(x => x._id)
 
-	const filteredListings = listings.filter(x => !bookingIds.includes(x._id))
-
 	const reviews = await Review.find({
-		listing: { $in: filteredListings.map(x => x._id)}
+		listing: { $in: listings.map(x => x._id)}
 	})
 
-	const mappedListings = filteredListings
+	const mappedListings = listings
 		.map(x => {
 			const ratings = reviews
 				.filter(x => x.listing === x._id)
@@ -40,4 +39,4 @@ async function queryListings(req, res, id) {
 	res.send(mappedListings)
 }
 
-export default queryListings
+export default reportListings
