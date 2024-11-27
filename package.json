@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "mocha",
     "start": "nodemon -r esm-wallaby ./bin/www"
   },
   "dependencies": {
