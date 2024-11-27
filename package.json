@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "startdev": "nodemon -r esm-wallaby ./bin/www",
-    "start": "node ./bin/www"
+    "start": "node -r esm-wallaby ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
