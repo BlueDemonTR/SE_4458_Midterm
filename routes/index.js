@@ -4,11 +4,13 @@ const { default: signup } = require('./signup');
 const { verify } = require('jsonwebtoken');
 const { default: insertListing } = require('./insertListing');
 import config from '../config'
+import queryListings from './queryListings';
 
 var router = express.Router();
 
 const connectionObject = {
 	"GET": {
+		'/queryListings': queryListings
 	},
 	"POST": {
     '/users/login': login,
@@ -34,13 +36,15 @@ function handleMessage(req, res) {
 		res.end()
 		return
 	}
+	
+	const url = req.params[0]
 
-	const func = method[req.url]
+	const func = method[url]
 	
 	if(!func) {
     res.status(400)
 		res.write(JSON.stringify(
-			{ err: "Invalid Function " + req.url + " in " + req.method }
+			{ err: "Invalid Function " + url + " in " + req.method }
 		))
 		res.end()
 		return
@@ -70,7 +74,7 @@ function handleMessage(req, res) {
 	func(req, res, id)
 }
 
-router.post('*', function(req, res, next) {
+router.use('*', function(req, res, next) {
   handleMessage(req, res)
 });
 

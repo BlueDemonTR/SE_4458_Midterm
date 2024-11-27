@@ -2,11 +2,12 @@ import { Schema, model } from 'mongoose'
 
 const BookingSchema = new Schema({
     guests: {
-        type: [{
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }],
+        type: [String],
         default: []
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     listing: {
         type: Schema.Types.ObjectId,

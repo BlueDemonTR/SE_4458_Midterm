@@ -9,7 +9,7 @@ const ReviewSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Listing'
     },
-		value: {
+		rating: {
 			type: Number,
 			default: 0
 		},
