@@ -1,10 +1,24 @@
 import { Schema, model } from 'mongoose'
 
 const ListingSchema = new Schema({
-	noOfPeople: Number,
-	country: String,
-	city: String,
-	price: Number,
+	noOfPeople: {
+		type: Number,
+		min: 0,
+		required: true
+	},
+	country: {
+		type: String,
+		required: true
+	},
+	city: {
+		type: String,
+		required: true
+	},
+	price: {
+		type: Number,
+		min: 0,
+		required: true
+	},
 	owner: {
 		type: Schema.Types.ObjectId,
 		ref: 'User'

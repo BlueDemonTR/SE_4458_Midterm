@@ -2,7 +2,7 @@ import { sign } from "jsonwebtoken"
 import config from "../config"
 import User from "../models/User"
 
-async function userLogin(req, res, next) {
+async function userLogin(req, res, id) {
   const { body } = req,
     { username, password } = body
 

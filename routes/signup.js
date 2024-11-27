@@ -2,7 +2,7 @@ import { sign } from "jsonwebtoken"
 import User from "../models/User"
 import config from "../config"
 
-async function signup(req, res, next) {
+async function signup(req, res, id) {
 	const { username, password } = req.body
 
   const existing = await User.findOne({ username })
