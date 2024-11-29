@@ -16,6 +16,14 @@
   "produces": [
     "application/json"
   ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Enter the token with the `Bearer: ` prefix, e.g. \"Bearer abcde12345\"."
+    }
+  },
   "paths": {
     "/users/login": {
       "x-swagger-router-controller": "hello_world",
@@ -108,6 +116,11 @@
     "/insertListing": {
       "x-swagger-router-controller": "hello_world",
       "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "description": "Creates a listing",
         "operationId": "insertListing",
         "parameters": [
@@ -160,6 +173,11 @@
     "/bookStay": {
       "x-swagger-router-controller": "hello_world",
       "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "description": "Creates a booking",
         "operationId": "bookStay",
         "parameters": [
@@ -215,6 +233,11 @@
     "/leaveReview": {
       "x-swagger-router-controller": "hello_world",
       "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "description": "Creates a review",
         "operationId": "leaveReview",
         "parameters": [
@@ -263,6 +286,11 @@
     "/reportListings": {
       "x-swagger-router-controller": "hello_world",
       "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "description": "Get a list of the listings (max 10 at once)",
         "operationId": "reportListings",
         "parameters": [
@@ -277,20 +305,6 @@
             "name": "city",
             "in": "query",
             "description": "the city to search",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "from",
-            "in": "query",
-            "description": "Starting date to look for in iso string",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "to",
-            "in": "query",
-            "description": "End date to look for in iso string",
             "required": true,
             "type": "string"
           },
@@ -337,6 +351,27 @@
             "description": "the city to search",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Starting date to look for in iso string",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End date to look for in iso string",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "noOfPeople",
+            "in": "query",
+            "description": "how big of a room to look for",
+            "required": true,
+            "type": "number"
           },
           {
             "name": "skip",

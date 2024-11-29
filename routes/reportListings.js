@@ -1,3 +1,4 @@
+import authorize from "../lib/authorize";
 import Booking from "../models/Booking";
 import Listing from "../models/Listing";
 import Review from "../models/Review";
@@ -12,11 +13,6 @@ async function reportListings(req, res, id) {
 	if(!user) return res.send('Unauthorized', 401)
 
 	const listings = await Listing.find({ country, city })
-
-	const bookings = await Booking.find({
-		listing: { $in: listings.map(x => x._id)}
-	}),
-		bookingIds = bookings.map(x => x._id)
 
 	const reviews = await Review.find({
 		listing: { $in: listings.map(x => x._id)}

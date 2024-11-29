@@ -12,14 +12,17 @@ async function queryListings(req, res, id) {
 
 	const bookings = await Booking.find({ 
 		$or: [
-			{ from: { $gt: from, $lt: to } }, 
-			{ to: { $gt: from, $lt: to } }
+			{ from: { $gte: from, $lte: to } }, 
+			{ to: { $gte: from, $lte: to } }
 		],		
 		listing: { $in: listings.map(x => x._id)}
 	}),
-		bookingIds = bookings.map(x => x._id)
+		bookingIds = bookings.map(x => x.listing.toString())
 
-	const filteredListings = listings.filter(x => !bookingIds.includes(x._id))
+	console.log(bookingIds, listings.map(x => x._id));
+	
+
+	const filteredListings = listings.filter(x => !bookingIds.includes(x._id.toString()))
 
 	const reviews = await Review.find({
 		listing: { $in: filteredListings.map(x => x._id)}

@@ -60,7 +60,7 @@ function handleMessage(req, res) {
 
 	if(req?.headers?.authorization) {
 		try {
-      const token = req.headers.authorization.slice(7)
+      const token = req.headers.authorization
 
 			id = verify(
 				token, 
@@ -81,7 +81,6 @@ function handleMessage(req, res) {
 }
 
 router.use('*', function(req, res, next) {
-	console.log(req)
   handleMessage(req, res)
 });
 
