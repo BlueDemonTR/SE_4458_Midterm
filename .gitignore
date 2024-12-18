@@ -2,3 +2,6 @@
 .env
 /node_modules
 /node_modules
+/swagger/node_modules
+/api_gateway/node_modules
+/booking-app/node_modules
